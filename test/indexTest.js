@@ -3,75 +3,47 @@ const expect = chai.expect;
 /*global describe, it */
 
 describe('drivers', function() {
-
-  it('defines a `driver` driver', function() {
-    expect(typeof driver).to.equal('object')
-  })
-
-  describe('updatedriverWithKeyAndValue(driver, key, value)', function() {
-    it('returns an driver with the orignal key value pairs and the new key value pair', function() {
-      let driver = { name: 'sam' }
-
-      expect(updateDriverWithKeyAndValue(driver, 'address', '11 Broadway')).to.eql({
-        name: 'sam',
-        address: '11 Broadway'
-      })
+  describe('findMatching', function() {
+    it('returns all drivers that match the passed in name', function() {
+      let drivers = ['Bobby', 'Sammy', "Sally", "Annette", "Sarah", "Bobby"]
+      expect(findMatching(drivers, 'Bobby')).to.eql(["Bobby", "Bobby"])
+      expect(findMatching(drivers, 'Sammy')).to.eql(["Sammy"])
     })
 
-    it('it does not modify the original driver, but rather returns a clone with the new data', function() {
-      let driver = { name: 'sam' }
+    it('returns matching drivers if case does not match but letters do', function() {
+      let drivers = ['Bobby', 'Sammy', "Sally", "Annette", "Sarah", "bobby"]
+      expect(findMatching(drivers, 'Bobby')).to.eql(["Bobby", "bobby"])
+    })
 
-      updateDriverWithKeyAndValue(driver, 'address', '11 Broadway')
-
-      expect(driver['address']).to.equal(undefined)
+    it('returns an empty array if there is no match', function() {
+      let drivers = ['Bobby', 'Sammy', "Sally", "Annette", "Sarah", "bobby"]
+      expect(findMatching(drivers, 'Susan')).to.eql([])
     })
   })
 
-  describe('destructivelyUpdatedriverWithKeyAndValue(driver, key, value)', function() {
-    it('updates `driver` with the given `key` and `value` (it is destructive) and returns the entire updated driver', function() {
-      let driver = { name: 'sam' }
+  describe('fuzzyMatch', function() {
+    it('returns a driver if beginning provided letters match', function() {
+      let drivers = ['Bobby', 'Sammy', "Sally", "Annette", "Sarah", "bobby"]
+      expect(fuzzyMatch(drivers, 'Sa')).to.have.members(["Sammy", "Sarah", "Sally"])
+    })
 
-      expect(destructivelyUpdateDriverWithKeyAndValue(driver, 'address', '12 Broadway')).to.eql({
-        name: 'sam',
-        address: '12 Broadway'
-      })
+    it('does not return drivers if only middle or ending letters match', function() {
+      let drivers = ['Bobby', 'Sammy', "Sally", "Annette", "Sarah", "bobby"]
+      expect(fuzzyMatch(drivers, 'y')).to.have.members([])
+    })
 
-      expect(driver).to.eql({
-        name: 'sam',
-        address: '12 Broadway'
-      })
+    it('does not return drivers if only middle or ending letters match', function() {
+      let drivers = ['Bobby', 'Sammy', "Sally", "Annette", "Sarah", "bobby"]
+      expect(fuzzyMatch(drivers, 'mm')).to.have.members([])
     })
   })
 
-  describe('deleteFromDriverByKey(driver, key)', function() {
-    it('deletes `key` from a clone of driver and returns the new driver (it is non-destructive)', function() {
-      let driver = { name: 'sam' }
-      let newdriver = deleteFromDriverByKey(driver, 'name')
-
-      expect(newdriver['name']).to.equal(undefined)
-    })
-
-    it('does not modify the original driver (it is non-destructive)', function() {
-      let driver = { name: 'sam' }
-
-      deleteFromDriverByKey(driver, 'name')
-      expect(driver['name']).to.equal('sam')
-    })
-  })
-
-  describe('destructivelyDeleteFromdriverByKey(driver, key)', function() {
-    it('returns driver without the delete key/value pair', function() {
-      let driver = { name: 'sam' }
-
-      let newdriver = destructivelyDeleteFromDriverByKey(driver, 'name');
-      expect(newdriver['name']).to.equal(undefined)
-    })
-
-    it('modifies the original driver', function() {
-      let driver = { name: 'sam' }
-      let newdriver = destructivelyDeleteFromDriverByKey(driver, 'name');
-
-      expect(driver['name']).to.equal(undefined)
+  describe('matchName', function() {
+    it('accesses the data structure to check if name matches', function() {
+      let drivers = [{name: 'Bobby', hometown: 'Pittsburgh'},
+      {name: 'Sammy', hometown: 'New York'}, {name: "Sally", hometown: 'Cleveland'},
+      {name: "Annette", hometown: "Los Angelos"}, {name: "Bobby", hometown: "Tampa Bay"}]
+      expect(matchName(drivers, 'Bobby')).to.eql([{name: 'Bobby', hometown: 'Pittsburgh'}, {name: "Bobby", hometown: "Tampa Bay"}])
     })
   })
 })
