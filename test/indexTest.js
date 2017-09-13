@@ -1,5 +1,6 @@
 const expect = chai.expect;
 
+<<<<<<< HEAD
 
 
 describe('Arrays', function() {
@@ -23,56 +24,52 @@ describe('Arrays', function() {
   describe('destructivelyPrependDriver(name)', function() {
     it('prepends a driver to the beginning of the drivers array', function() {
       destructivelyPrependDriver("Bob")
+=======
+/*global describe, it */
+>>>>>>> master
 
-      expect(drivers).to.have.ordered.members(["Bob", "Milo", "Otis", "Garfield"])
+describe('drivers', function() {
+  describe('findMatching', function() {
+    it('returns all drivers that match the passed in name', function() {
+      let drivers = ['Bobby', 'Sammy', "Sally", "Annette", "Sarah", "Bobby"]
+      expect(findMatching(drivers, 'Bobby')).to.eql(["Bobby", "Bobby"])
+      expect(findMatching(drivers, 'Sammy')).to.eql(["Sammy"])
+    })
+
+    it('returns matching drivers if case does not match but letters do', function() {
+      let drivers = ['Bobby', 'Sammy', "Sally", "Annette", "Sarah", "bobby"]
+      expect(findMatching(drivers, 'Bobby')).to.eql(["Bobby", "bobby"])
+    })
+
+    it('returns an empty array if there is no match', function() {
+      let drivers = ['Bobby', 'Sammy', "Sally", "Annette", "Sarah", "bobby"]
+      expect(findMatching(drivers, 'Susan')).to.eql([])
     })
   })
 
-  describe('destructivelyRemoveLastDriver()', function() {
-    it('removes the last driver from the drivers array', function() {
-      destructivelyRemoveLastDriver()
+  describe('fuzzyMatch', function() {
+    it('returns a driver if beginning provided letters match', function() {
+      let drivers = ['Bobby', 'Sammy', "Sally", "Annette", "Sarah", "bobby"]
+      expect(fuzzyMatch(drivers, 'Sa')).to.have.members(["Sammy", "Sarah", "Sally"])
+    })
 
-      expect(drivers).to.have.ordered.members(["Milo", "Otis"]).and.to.not.include('Garfield')
+    it('does not return drivers if only middle or ending letters match', function() {
+      let drivers = ['Bobby', 'Sammy', "Sally", "Annette", "Sarah", "bobby"]
+      expect(fuzzyMatch(drivers, 'y')).to.have.members([])
+    })
+
+    it('does not return drivers if only middle or ending letters match', function() {
+      let drivers = ['Bobby', 'Sammy', "Sally", "Annette", "Sarah", "bobby"]
+      expect(fuzzyMatch(drivers, 'mm')).to.have.members([])
     })
   })
 
-  describe('destructivelyRemoveFirstDriver()', function() {
-    it('removes the First driver from the drivers array', function() {
-      destructivelyRemoveFirstDriver()
-
-      expect(drivers).to.have.ordered.members(["Otis", "Garfield"]).and.to.not.include('Milo')
+  describe('matchName', function() {
+    it('accesses the data structure to check if name matches', function() {
+      let drivers = [{name: 'Bobby', hometown: 'Pittsburgh'},
+      {name: 'Sammy', hometown: 'New York'}, {name: "Sally", hometown: 'Cleveland'},
+      {name: "Annette", hometown: "Los Angelos"}, {name: "Bobby", hometown: "Tampa Bay"}]
+      expect(matchName(drivers, 'Bobby')).to.eql([{name: 'Bobby', hometown: 'Pittsburgh'}, {name: "Bobby", hometown: "Tampa Bay"}])
     })
   })
-
-  describe('appendDriver(name)', function() {
-    it('appends a driver to the drivers array and returns a new array, leaving the drivers array unchanged', function() {
-      expect(appendDriver("Broom")).to.have.ordered.members(["Milo", "Otis", "Garfield", "Broom"])
-
-      expect(drivers).to.have.ordered.members(["Milo", "Otis", "Garfield"])
-    })
-  })
-
-  describe('prependDriver(name)', function() {
-    it('prepends a driver to the drivers array and returns a new array, leaving the drivers array unchanged', function() {
-      expect(prependDriver("Arnold")).to.have.ordered.members(["Arnold", "Milo", "Otis", "Garfield"])
-
-      expect(drivers).to.have.ordered.members(["Milo", "Otis", "Garfield"])
-    })
-  })
-
-  describe('removeLastDriver()', function() {
-    it('removes the last driver in the drivers array and returns a new array, leaving the drivers array unchanged', function() {
-      expect(removeLastDriver()).to.have.ordered.members(["Milo", "Otis"])
-
-      expect(drivers).to.have.ordered.members(["Milo", "Otis", "Garfield"])
-    })
-  })
-
-  describe('removeFirstDriver()', function() {
-    it('removes the first driver from the drivers array and returns a new array, leaving the drivers array unchanged', function() {
-      expect(removeFirstDriver()).to.have.ordered.members(["Otis", "Garfield"])
-      expect(drivers).to.have.ordered.members(["Milo", "Otis", "Garfield"])
-    })
-  })
-
 })
