@@ -1,33 +1,5 @@
 const expect = chai.expect;
 
-<<<<<<< HEAD
-
-
-describe('Arrays', function() {
-  beforeEach(() => {
-    drivers = ['Milo', 'Otis', 'Garfield'];
-  })
-
-  describe('drivers', function() {
-    it('defines drivers as `var drivers = ["Milo", "Otis", "Garfield"]`', function() {
-      expect(drivers).to.have.ordered.members(["Milo", "Otis", "Garfield"])
-    })
-  })
-
-  describe('destructivelyAppendDriver(name)', function() {
-    it('appends a driver to the end of the drivers array', function() {
-      destructivelyAppendDriver('Ralph')
-      expect(drivers).to.have.ordered.members(["Milo", "Otis", "Garfield", "Ralph"])
-    })
-  })
-
-  describe('destructivelyPrependDriver(name)', function() {
-    it('prepends a driver to the beginning of the drivers array', function() {
-      destructivelyPrependDriver("Bob")
-=======
-/*global describe, it */
->>>>>>> master
-
 describe('drivers', function() {
   describe('findMatching', function() {
     it('returns all drivers that match the passed in name', function() {

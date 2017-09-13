@@ -1,25 +1,19 @@
-var driver = {}
-
-function updateDriverWithKeyAndValue(driver, key, value) {
-  return Object.assign({}, driver, { [key]: value })
+function findMatching(list, name){
+  return list.filter(function(driverName){
+    return driverName.toLowerCase() == name.toLowerCase()
+  })
 }
 
-function destructivelyUpdateDriverWithKeyAndValue(driver, key, value) {
-  driver[key] = value
 
-  return driver
+function fuzzyMatch(list, partialName){
+  let lengthOfName = partialName.length
+  return list.filter(function(driverName){
+    return driverName.slice(0, lengthOfName) == partialName
+  })
 }
 
-function deleteFromDriverByKey(driver, key) {
-  const newObj = Object.assign({}, driver)
-
-  delete newObj[key]
-
-  return newObj
-}
-
-function destructivelyDeleteFromDriverByKey(driver, key) {
-  delete driver[key]
-
-  return driver
+function matchName(list, name){
+  return list.filter(function(driver){
+    return driver.name.toLowerCase() == name.toLowerCase()
+  })
 }
