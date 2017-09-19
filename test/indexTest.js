@@ -1,47 +1,40 @@
 const expect = chai.expect;
 
 describe('drivers', function() {
-  describe('findMatching', function() {
-    it('returns all drivers that match the passed in name', function() {
-      let drivers = ['Bobby', 'Sammy', "Sally", "Annette", "Sarah", "Bobby"]
-      expect(findMatching(drivers, 'Bobby')).to.eql(["Bobby", "Bobby"])
-      expect(findMatching(drivers, 'Sammy')).to.eql(["Sammy"])
-    })
+  let drivers = [{name: 'Bobby', hometown: 'Pittsburgh', revenue: 3000},
+  {name: 'Sammy', hometown: 'New York', revenue: 2000}, {name: "Sally", hometown: 'Cleveland', revenue: 2500},
+  {name: "Annette", hometown: "Los Angelos", revenue: 6000}, {name: "Bobby", hometown: "Tampa Bay", revenue: 5000}]
 
-    it('returns matching drivers if case does not match but letters do', function() {
-      let drivers = ['Bobby', 'Sammy', "Sally", "Annette", "Sarah", "bobby"]
-      expect(findMatching(drivers, 'Bobby')).to.eql(["Bobby", "bobby"])
+  describe('driversWithRevenueOver', function() {
+    it('returns all drivers with revenue over the passed through amount', function() {
+      expect(driversWithRevenueOver(drivers, 3100)).to.eql([{name: "Annette", hometown: "Los Angelos", revenue: 6000}, {name: "Bobby", hometown: "Tampa Bay", revenue: 5000}])
+      expect(driversWithRevenueOver(drivers, 5100)).to.eql([{name: "Annette", hometown: "Los Angelos", revenue: 6000}])
     })
 
     it('returns an empty array if there is no match', function() {
-      let drivers = ['Bobby', 'Sammy', "Sally", "Annette", "Sarah", "bobby"]
-      expect(findMatching(drivers, 'Susan')).to.eql([])
+      expect(driversWithRevenueOver(drivers, 6100)).to.eql([])
     })
   })
 
-  describe('fuzzyMatch', function() {
-    it('returns a driver if beginning provided letters match', function() {
-      let drivers = ['Bobby', 'Sammy', "Sally", "Annette", "Sarah", "bobby"]
-      expect(fuzzyMatch(drivers, 'Sa')).to.have.members(["Sammy", "Sarah", "Sally"])
+  describe('exactMatch', function() {
+    it('returns a driver the attribute and corresponding value match', function() {
+      expect(exactMatch(drivers, {name: 'Bobby'})).to.eql([{name: 'Bobby', hometown: 'Pittsburgh', revenue: 3000}, {name: "Bobby", hometown: "Tampa Bay", revenue: 5000}])
     })
 
-    it('does not return drivers if only middle or ending letters match', function() {
-      let drivers = ['Bobby', 'Sammy', "Sally", "Annette", "Sarah", "bobby"]
-      expect(fuzzyMatch(drivers, 'y')).to.have.members([])
-    })
-
-    it('does not return drivers if only middle or ending letters match', function() {
-      let drivers = ['Bobby', 'Sammy', "Sally", "Annette", "Sarah", "bobby"]
-      expect(fuzzyMatch(drivers, 'mm')).to.have.members([])
+    it('works for all attributes', function() {
+      expect(exactMatch(drivers, {revenue: 3000})).to.eql([{name: 'Bobby', hometown: 'Pittsburgh', revenue: 3000}])
     })
   })
 
-  describe('matchName', function() {
-    it('accesses the data structure to check if name matches', function() {
-      let drivers = [{name: 'Bobby', hometown: 'Pittsburgh'},
-      {name: 'Sammy', hometown: 'New York'}, {name: "Sally", hometown: 'Cleveland'},
-      {name: "Annette", hometown: "Los Angelos"}, {name: "Bobby", hometown: "Tampa Bay"}]
-      expect(matchName(drivers, 'Bobby')).to.eql([{name: 'Bobby', hometown: 'Pittsburgh'}, {name: "Bobby", hometown: "Tampa Bay"}])
+  describe('exactMatchToList', function(){
+    it('returns a list of names for the matching attributes', function() {
+      expect(exactMatchToList(drivers, {revenue: 2000})).to.eql(["Sammy"])
+    })
+  })
+
+  describe('driverNamesWithRevenueOver', function(){
+    it('returns a list of names of drivers with revenue over the provided value', function() {
+      expect(driverNamesWithRevenueOver(drivers, 2600)).to.eql(["Bobby", "Annette", "Bobby"])
     })
   })
 })
