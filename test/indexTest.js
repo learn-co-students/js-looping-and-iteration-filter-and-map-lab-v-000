@@ -1,49 +1,112 @@
 const expect = chai.expect;
 
-/*global describe, it */
+describe('drivers', () => {
+  let drivers;
+  let extendedDrivers;
 
-describe('drivers', function() {
-  describe('findMatching', function() {
-    it('returns all drivers that match the passed in name', function() {
-      let drivers = ['Bobby', 'Sammy', "Sally", "Annette", "Sarah", "Bobby"]
-      expect(findMatching(drivers, 'Bobby')).to.eql(["Bobby", "Bobby"])
-      expect(findMatching(drivers, 'Sammy')).to.eql(["Sammy"])
-    })
+  beforeEach(() => {
+    drivers = [
+      {
+        name: 'Sally',
+        revenue: 400
+      },
+      {
+        name: 'Annete',
+        revenue: 200
+      },
+      {
+        name: 'Jim', 
+        revenue: 150
+      }
+    ];
+    extendedDrivers = drivers.concat({
+      name: 'Sally',
+      revenue: 200
+    });
+  });
 
-    it('returns matching drivers if case does not match but letters do', function() {
-      let drivers = ['Bobby', 'Sammy', "Sally", "Annette", "Sarah", "bobby"]
-      expect(findMatching(drivers, 'Bobby')).to.eql(["Bobby", "bobby"])
-    })
+  describe('driversWithRevenueOver', () => {
+    it('returns an array of all matching drivers', () => {
+      expect(driversWithRevenueOver(drivers, 250)).to.eql([
+        {
+          name: 'Sally',
+          revenue: 400
+        }
+      ]);
+      expect(driversWithRevenueOver(drivers, 199)).to.eql([
+        {
+          name: 'Sally', 
+          revenue: 400
+        },
+        {
+          name: 'Annete',
+          revenue: 200
+        },
+      ]);
+    });
 
-    it('returns an empty array if there is no match', function() {
-      let drivers = ['Bobby', 'Sammy', "Sally", "Annette", "Sarah", "bobby"]
-      expect(findMatching(drivers, 'Susan')).to.eql([])
-    })
-  })
+    it('returns an empty array if there is no match', () => {
+      expect(driversWithRevenueOver(drivers, 500)).to.eql([]);
+    });
+  });
 
-  describe('fuzzyMatch', function() {
-    it('returns a driver if beginning provided letters match', function() {
-      let drivers = ['Bobby', 'Sammy', "Sally", "Annette", "Sarah", "bobby"]
-      expect(fuzzyMatch(drivers, 'Sa')).to.have.members(["Sammy", "Sarah", "Sally"])
-    })
+  describe('driverNamesWithRevenueOver', () => {
+    it('returns an array of all matching drivers names as string', () => {
+      expect(driverNamesWithRevenueOver(drivers, 199)).to.eql([
+        'Sally', 'Annete'
+      ]);
+    });
 
-    it('does not return drivers if only middle or ending letters match', function() {
-      let drivers = ['Bobby', 'Sammy', "Sally", "Annette", "Sarah", "bobby"]
-      expect(fuzzyMatch(drivers, 'y')).to.have.members([])
-    })
+    it('returns an empty array if there is no match', () => {
+      expect(driverNamesWithRevenueOver(drivers, 500)).to.eql([]);
+    });
+  });
 
-    it('does not return drivers if only middle or ending letters match', function() {
-      let drivers = ['Bobby', 'Sammy', "Sally", "Annette", "Sarah", "bobby"]
-      expect(fuzzyMatch(drivers, 'mm')).to.have.members([])
-    })
-  })
+  describe('exactMatch', () => {
+    it('returns an array of all matching drivers', () => {
+      expect(exactMatch(extendedDrivers, { name: 'Sally' })).to.eql([
+        {
+          name: 'Sally',
+          revenue: 400
+        },
+        {
+          name: 'Sally',
+          revenue: 200
+        }
+      ]);
+      expect(exactMatch(extendedDrivers, { revenue: 200 })).to.eql([
+        {
+          name: 'Annete',
+          revenue: 200
+        },
+        {
+          name: 'Sally', 
+          revenue: 200
+        },
+      ]);
+    });
 
-  describe('matchName', function() {
-    it('accesses the data structure to check if name matches', function() {
-      let drivers = [{name: 'Bobby', hometown: 'Pittsburgh'},
-      {name: 'Sammy', hometown: 'New York'}, {name: "Sally", hometown: 'Cleveland'},
-      {name: "Annette", hometown: "Los Angelos"}, {name: "Bobby", hometown: "Tampa Bay"}]
-      expect(matchName(drivers, 'Bobby')).to.eql([{name: 'Bobby', hometown: 'Pittsburgh'}, {name: "Bobby", hometown: "Tampa Bay"}])
-    })
-  })
-})
+    it('returns an empty array if there is no match', () => {
+      expect(exactMatch(extendedDrivers, { revenue: 500 })).to.eql([]);
+      expect(exactMatch(extendedDrivers, { name: 'Alex' })).to.eql([]);
+    });
+  });
+
+  describe('exactMatchToList', () => {
+    it('returns an array of names for all matching drivers', () => {
+      expect(exactMatchToList(extendedDrivers, { name: 'Sally' })).to.eql([
+        'Sally', 'Sally'
+      ]);
+      expect(exactMatchToList(extendedDrivers, { revenue: 200 })).to.eql([
+        'Annete', 'Sally'
+      ]);
+    });
+
+    it('returns an empty array if there is no match', () => {
+      expect(exactMatchToList(extendedDrivers, { revenue: 500 })).to.eql([]);
+      expect(exactMatchToList(extendedDrivers, { name: 'Alex' })).to.eql([]);
+    });
+  });
+});
+
+
