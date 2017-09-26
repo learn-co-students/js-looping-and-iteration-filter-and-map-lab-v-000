@@ -9,7 +9,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@github.com/learn-co-curriculum/js-looping-and-iteration-filter-and-map-lab"
+    "url": "git+ssh://git@github.com/learn-co-curriculum/js-looping-and-iteration-filter-and-map-lab.git"
   },
   "keywords": [
     "learn",
