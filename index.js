@@ -1,20 +1,20 @@
 // Code your solution here:
 
-function driversWithRevenueOver (list, revenue) {
-  return list.filter(function (driver) {
+function driversWithRevenueOver (drivers, revenue) {
+  return drivers.filter(function (driver) {
     return driver.revenue > revenue;
   });
 }
 
-function driverNamesWithRevenueOver (list, revenue) {
-  return driversWithRevenueOver(list, revenue)
+function driverNamesWithRevenueOver (drivers, revenue) {
+  return driversWithRevenueOver(drivers, revenue)
     .map(function (driver) {
       return driver.name;
     });
 }
 
-function exactMatch (list, matcher) {
-  return list.filter(function (driver) {
+function exactMatch (drivers, matcher) {
+  return drivers.filter(function (driver) {
     let matches = false;
 
     for (const key in matcher) {
@@ -25,9 +25,9 @@ function exactMatch (list, matcher) {
   });
 }
 
-function exactMatchToList (list, matcher) {
-  return exactMatch(list, matcher)
+function exactMatchToList (drivers, matcher) {
+  return exactMatch(drivers, matcher)
     .map(function (driver) {
-        return driver.name;
+      return driver.name;
     });
 }
