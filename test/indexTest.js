@@ -1,49 +1,37 @@
 const expect = chai.expect;
 
 describe('index.js', function () {
-  let drivers;
-  let extendedDrivers;
+  const drivers = [];
+  const extendedDrivers = [];
 
   beforeEach(function () {
-    drivers = [
-      {
-        name: 'Sally',
-        revenue: 400
-      },
-      {
-        name: 'Annete',
-        revenue: 200
-      },
-      {
-        name: 'Jim',
-        revenue: 150
-      }
-    ];
+    drivers.length = 0;
 
-    extendedDrivers = drivers.concat({
-      name: 'Sally',
-      revenue: 200
-    });
+    drivers.push(
+      { name: 'Sally',   revenue: 400 },
+      { name: 'Annette', revenue: 200 },
+      { name: 'Jim',     revenue: 150 }
+    );
+
+    extendedDrivers.length = 0;
+
+    extendedDrivers.push(
+      { name: 'Sally',   revenue: 400 },
+      { name: 'Annette', revenue: 200 },
+      { name: 'Jim',     revenue: 150 },
+      { name: 'Sally',   revenue: 200 }
+    );
   });
 
   describe('driversWithRevenueOver()', function () {
     it('returns an array of all matching drivers', function () {
       expect(driversWithRevenueOver(drivers, 250)).to.eql([
-        {
-          name: 'Sally',
-          revenue: 400
-        }
+        { name: 'Sally', revenue: 400 }
       ]);
 
       expect(driversWithRevenueOver(drivers, 199)).to.eql([
-        {
-          name: 'Sally',
-          revenue: 400
-        },
-        {
-          name: 'Annete',
-          revenue: 200
-        },
+        { name: 'Sally',   revenue: 400 },
+        { name: 'Annette', revenue: 200 }
       ]);
     });
 
@@ -54,9 +42,7 @@ describe('index.js', function () {
 
   describe('driverNamesWithRevenueOver()', function () {
     it('returns an array of all matching drivers names as string', function () {
-      expect(driverNamesWithRevenueOver(drivers, 199)).to.eql([
-        'Sally', 'Annete'
-      ]);
+      expect(driverNamesWithRevenueOver(drivers, 199)).to.eql([ 'Sally', 'Annette' ]);
     });
 
     it('returns an empty array if there is no match', function () {
@@ -67,25 +53,13 @@ describe('index.js', function () {
   describe('exactMatch()', function () {
     it('returns an array of all matching drivers', function () {
       expect(exactMatch(extendedDrivers, { name: 'Sally' })).to.eql([
-        {
-          name: 'Sally',
-          revenue: 400
-        },
-        {
-          name: 'Sally',
-          revenue: 200
-        }
+        { name: 'Sally', revenue: 400 },
+        { name: 'Sally', revenue: 200 }
       ]);
 
       expect(exactMatch(extendedDrivers, { revenue: 200 })).to.eql([
-        {
-          name: 'Annete',
-          revenue: 200
-        },
-        {
-          name: 'Sally',
-          revenue: 200
-        },
+        { name: 'Annette', revenue: 200 },
+        { name: 'Sally',   revenue: 200 }
       ]);
     });
 
@@ -98,13 +72,9 @@ describe('index.js', function () {
 
   describe('exactMatchToList()', function () {
     it('returns an array of names for all matching drivers', function () {
-      expect(exactMatchToList(extendedDrivers, { name: 'Sally' })).to.eql([
-        'Sally', 'Sally'
-      ]);
+      expect(exactMatchToList(extendedDrivers, { name: 'Sally' })).to.eql([ 'Sally', 'Sally' ]);
 
-      expect(exactMatchToList(extendedDrivers, { revenue: 200 })).to.eql([
-        'Annete', 'Sally'
-      ]);
+      expect(exactMatchToList(extendedDrivers, { revenue: 200 })).to.eql([ 'Annette', 'Sally' ]);
     });
 
     it('returns an empty array if there is no match', function () {
