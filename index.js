@@ -9,7 +9,10 @@ function driverNamesWithRevenueOver(driver, revenue) {
 
 function exactMatch(driver, Obj) {
 	return driver.filter(function(driverObj) {
-		const searchField = Object.keys(Obj)[0] //'name' or 'revenue'
+		const searchField = Object.keys(Obj)[0]
+		//Another Way to do this...
+		// let searchField = []
+		// for (const key in Obj) {searchField.push(key)}
 		return driverObj[searchField] === Obj[searchField]
 	})
 }
