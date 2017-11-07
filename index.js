@@ -17,9 +17,17 @@ function exactMatch(drivers, condition)
 {
   return drivers.filter(function(driver)
 {
-  for(const key in condition)
+  for(let key in condition)
   {
        return driver[key] === condition[key];
      }
 });
 }
+
+ function exactMatchToList(drivers, condition)
+{
+       return exactMatch(drivers,condition).map(function(driver)
+     {return driver.name;});
+
+
+  }
