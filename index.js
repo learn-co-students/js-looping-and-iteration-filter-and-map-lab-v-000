@@ -1,48 +1,38 @@
 // Code your solution here:
 function driversWithRevenueOver(drivers, revenue) {
-    let driversWithRevenue = [];
-    drivers.map(function(driver) {
-        if (driver.revenue > revenue) {
-            driversWithRevenue.push(driver);
-        }
-    });
-    return driversWithRevenue;
+    return drivers
+        .filter(driver => {
+            return driver.revenue > revenue;
+        })
+        .map(driver => driver);
 }
 
 function driverNamesWithRevenueOver(drivers, revenue) {
-    let driversWithRevenue = [];
-    drivers.map(function(driver) {
-        if (driver.revenue > revenue) {
-            driversWithRevenue.push(driver.name);
-        }
-    });
-    return driversWithRevenue;
+    return drivers
+        .filter(driver => {
+            return driver.revenue > revenue;
+        })
+        .map(driver => driver.name);
 }
 
 function exactMatch(drivers, obj) {
-    let matchedDrivers = [];
-    drivers.map(function(driver) {
-        if ("name" in obj || "revenue" in obj) {
-            if (driver.name === obj.name || driver.revenue === obj.revenue) {
-                matchedDrivers.push(driver);
-            }
-        } else {
-            console.log("Not a matching object");
-        }
-    });
-    return matchedDrivers;
+    return drivers
+        .filter(driver => {
+            return (
+                ("name" in obj || "revenue" in obj) &&
+                (driver.name === obj.name || driver.revenue === obj.revenue)
+            );
+        })
+        .map(driver => driver);
 }
 
 function exactMatchToList(drivers, obj) {
-    let matchedDrivers = [];
-    drivers.map(function(driver) {
-        if ("name" in obj || "revenue" in obj) {
-            if (driver.name === obj.name || driver.revenue === obj.revenue) {
-                matchedDrivers.push(driver.name);
-            }
-        } else {
-            console.log("Not a matching object");
-        }
-    });
-    return matchedDrivers;
+    return drivers
+        .filter(driver => {
+            return (
+                ("name" in obj || "revenue" in obj) &&
+                (driver.name === obj.name || driver.revenue === obj.revenue)
+            );
+        })
+        .map(driver => driver.name);
 }
