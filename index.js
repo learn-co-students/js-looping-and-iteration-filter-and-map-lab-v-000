@@ -6,23 +6,37 @@ function driversWithRevenueOver(drivers, revenue) {
 }
 
 function driverNamesWithRevenueOver(drivers, revenue) {
-  return driversWithRevenueOver(drivers, revenue).map(function(driver) {
-    return driver.name;
+  return driversWithRevenueOver(drivers, revenue)
+    .map(function(driver) {
+      return driver.name;
   });
 }
 
-function exactMatch(drivers, driverInfo) {
-  return drivers.filter(function(driver){
-    for (const key in driver) {
-      if (key === Object.keys(driverInfo)[0] && driver[key] === Object.values(driverInfo)[0]) {
-        return driver;
-      }
+// function exactMatch(drivers, driverInfo) {
+//   return drivers.filter(function(driver){
+//     for (const key in driver) {
+//       if (key === Object.keys(driverInfo)[0] && driver[key] === Object.values(driverInfo)[0]) {
+//         return driver;
+//       }
+//     }
+//   });
+// }
+
+function exactMatch (drivers, matcher) {
+  return drivers.filter(function (driver) {
+    let matches = false;
+
+    for (const key in matcher) {
+      matches = driver[key] === matcher[key];
     }
+
+    return matches;
   });
 }
 
-function exactMatchToList(drivers, driverInfo) {
-  return exactMatch(drivers, driverInfo).map(function(driver) {
-    return driver.name;
+function exactMatchToList(drivers, matcher) {
+  return exactMatch(drivers, matcher)
+    .map(function(driver) {
+      return driver.name;
   });
 }
