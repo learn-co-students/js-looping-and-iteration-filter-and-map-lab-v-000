@@ -13,7 +13,7 @@ def exact_match(drivers, matcher)
   drivers.select do |driver|
     matches = false
     matcher.each do |key, value|
-      matches = (matcher[key] == driver[key])
+      matches = (value == driver[key])
     end
     matches
   end
