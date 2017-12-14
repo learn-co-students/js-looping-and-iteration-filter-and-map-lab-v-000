@@ -6,23 +6,10 @@ function driversWithRevenueOver (drivers, revenue) {
 }
 
 function driverNamesWithRevenueOver (drivers, revenue) {
-  const driversList = driversWithRevenueOver (drivers, revenue);
-  return driversList.map(function (driver) {
+  return driversWithRevenueOver(drivers, revenue).map(function (driver) {
     return driver.name;
   });
 }
-
-/*
-function driverNamesWithRevenueOver (drivers, revenue) {
-  let driversList = drivers.map(function (driver) {
-    if (driver.revenue > revenue) {
-      return driver.name;
-    }
-  });
-  return driversList;
-}
--> using map returns undefined when condition evaluates to false
-*/
 
 function exactMatch (drivers, value) {
   return drivers.filter(function (driver) {
@@ -35,8 +22,7 @@ function exactMatch (drivers, value) {
 }
 
 function exactMatchToList (drivers, value) {
-  const driversMatched = exactMatch (drivers, value);
-  return driversMatched.map(function (driver) {
+  return exactMatch(drivers, value).map(function (driver) {
     return driver.name;
   });
 }
