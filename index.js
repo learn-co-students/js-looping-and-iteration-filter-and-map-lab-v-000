@@ -1,11 +1,10 @@
 // Code your solution here:
-function driversWithRevenueOver (array, string) {
-  const driversMakingMoney = array.filter(function (driver) {
-    if (driver.revenue > string) {
+function driversWithRevenueOver (drivers, revenue) {
+  return drivers.filter(function (driver) {
+    if (driver.revenue > revenue) {
       return driver
     };
   });
-  return driversMakingMoney;
 }
 
 function driverNamesWithRevenueOver (array, string) {
