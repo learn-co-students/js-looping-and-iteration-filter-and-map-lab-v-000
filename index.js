@@ -10,6 +10,14 @@ or
 // function driverNamesWithRevenueOver(driver,revenue){
 //   return driversWithRevenueOrder(driver,revenue).map(function(person){return person[name]})
 // }
-function exactMatch(driver,object){ //needs to return exact name or revenue object
-  driver.filter(function(person){return })
+function exactMatch(driver,object){ //retuned 2 matches
+  return driver.filter(function(person){
+    if (driver.name == object.name || driver.reveue== object.revenue){
+      return driver
+    }
+  })
+}
+or
+function exactMatch(driver,object){ //returned no matched
+  return driver.filter(function(person){return driver.name== object || driver.revenue == object})
 }
