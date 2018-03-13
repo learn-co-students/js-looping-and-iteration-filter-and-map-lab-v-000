@@ -1,46 +1,26 @@
 // Code your solution here:
 
 function driversWithRevenueOver(list, revenue) {
-  const newList = []
-
-  list.map(function (driver) {
-    if(driver.revenue > revenue){
-      newList.push(driver);
-    }
-  });
-
-  return newList;
+  return list.filter(driver => driver.revenue > revenue)
 }
 
 function driverNamesWithRevenueOver(list, revenue) {
-  const newList = []
-
-  list.map(function (driver) {
-    if(driver.revenue > revenue){
-      newList.push(driver.name);
-    }
-  });
-
-  return newList;
+  return driversWithRevenueOver(list, revenue)
+    .map(function (driver) {
+      return driver.name;
+    });
 }
 
 function exactMatch(list, obj) {
-  const newList = []
-
-  list.map(function (driver) {
+  return list.filter(function (driver) {
     if (driver.name === obj.name || driver.revenue === obj.revenue){
-      newList.push(driver);
+      return driver;
     }
   });
-  return newList;
 }
 
 function exactMatchToList(list, obj) {
-  const newList = []
-
-  exactMatch(list, obj).map(function (driver){
-    newList.push(driver.name);
+  return exactMatch(list, obj).map(function (driver){
+    return driver.name;
   });
-
-  return newList;
 }
