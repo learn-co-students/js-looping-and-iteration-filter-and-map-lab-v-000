@@ -1,7 +1,4 @@
 // Code your solution here:
-// const drivers = [{ name: 'Sally',   revenue: 400 },
-//     { name: 'Annette', revenue: 200 },
-//     { name: 'Jim',     revenue: 150 }]
 
 function driversWithRevenueOver(list, revenue) {
   const newList = []
@@ -34,7 +31,7 @@ function exactMatch(list, obj) {
     if (driver.name === obj.name || driver.revenue === obj.revenue){
       newList.push(driver);
     }
-  })
+  });
   return newList;
 }
 
@@ -43,7 +40,7 @@ function exactMatchToList(list, obj) {
 
   exactMatch(list, obj).map(function (driver){
     newList.push(driver.name);
-  })
+  });
 
   return newList;
 }
