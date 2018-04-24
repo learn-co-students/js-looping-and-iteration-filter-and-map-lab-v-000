@@ -4,9 +4,11 @@ function driversWithRevenueOver(drivers, amount) {
 }
 
 function driverNamesWithRevenueOver(drivers, amount) {
-  const goodDrivers = drivers.filter(driver => driver.revenue > amount)
+  // const goodDrivers = drivers.filter(driver => driver.revenue > amount)
+  //
+  // return goodDrivers.map (driver => driver.name)
 
-  return goodDrivers.map (driver => driver.name)
+  return driversWithRevenueOver(drivers, amount).map(driver => driver.name)
 }
 
 function exactMatch(drivers, param) {
@@ -16,9 +18,11 @@ function exactMatch(drivers, param) {
 }
 
 function exactMatchToList(drivers, param) {
-  const keyOfParam = Object.keys(param)[0]
+  // const keyOfParam = Object.keys(param)[0]
+  //
+  // const matchingDrivers = drivers.filter(driver => driver[keyOfParam] === param[keyOfParam])
+  //
+  // return matchingDrivers.map(driver => driver.name)
 
-  const matchingDrivers = drivers.filter(driver => driver[keyOfParam] === param[keyOfParam])
-
-  return matchingDrivers.map(driver => driver.name)
+  return exactMatch(drivers, param).map(driver => driver.name)
 }
