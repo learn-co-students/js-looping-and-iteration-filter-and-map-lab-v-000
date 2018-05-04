@@ -19,16 +19,5 @@ function exactMatch(driver, obj) {
 }
 
 function exactMatchToList(drivers, obj) {
-    return drivers.filter(function(d){
-        let res = false;
-            for (const key in obj) {
-                res = d[key] === obj[key]
-            }
-                if (res) {
-                    return d.name
-                } else {
-                    return res
-                }
-    })
-}
+    function exactMatch(drivers, obj){}
 
