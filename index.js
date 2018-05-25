@@ -23,6 +23,25 @@ function driverNamesWithRevenueOver(drivers, revenue){
 //end result is an array of names for drivers who have a revenue greater than the amount passed in
 
 
-function exactMatch(drivers, criteria) {
-  //
+function exactMatch(drivers, matcher) {
+  //will be given a list array and a criteria, which will either be revenue or name (number or string)
+  //based on which is given, either search the name keys for a match in the values if a string is passed, or the revenue keys for the values
+  //use filter first, then map?
+  return drivers.filter(function (driver) {
+  let matches = false;
+
+  for (const key in matcher) {
+    matches = driver[key] === matcher[key];
+  }
+
+  return matches;
+});
+}
+
+
+function exactMatchToList (drivers, matcher) {
+  return exactMatch(drivers, matcher)
+    .map(function (driver) {
+      return driver.name;
+    });
 }
