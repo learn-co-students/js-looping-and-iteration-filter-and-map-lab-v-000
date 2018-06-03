@@ -26,16 +26,8 @@ function exactMatch(drivers, object){
     );
 }
 
-function exactMatchToList(drivers, object){
-    return drivers.filter(
-        function(driver) {
-          for (attribute in object ) {
-            while (driver[attribute] === object[attribute]) {
-              return console.log(driver['name']);
-            }
-          }
-        }
-    );
-}
-
-// https://repl.it/@emesfun/InfiniteMajorSynergy
+function exactMatchToList(drivers, match) {
+    return exactMatch(drivers, match).map(function (driver) {
+      return driver.name
+    })
+  }
