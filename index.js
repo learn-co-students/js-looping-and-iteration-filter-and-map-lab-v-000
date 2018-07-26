@@ -8,7 +8,8 @@ function driverNamesWithRevenueOver(array, num) {
 }
 
 function exactMatch(array, condition) {
-  return array.filter(hash => hash.name === condition.name || hash.revenue === condition.revenue);
+  let key = Object.keys(condition)[0];
+  return array.filter(hash => hash[key] === condition[key]);
 }
 
 function exactMatchToList(array, condition) {
