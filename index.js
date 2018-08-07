@@ -8,17 +8,31 @@ function driversWithRevenueOver(drivers, revenue) {
 }
 
 function driverNamesWithRevenueOver(drivers, revenue) {
-  return drivers.filter(function(i) {
-    if (i.revenue > revenue) {
-      return i.filter(function(x) {return x.name});
-    };
-  });
+  newArr = driversWithRevenueOver(drivers, revenue);
+  return newArr.map(function(i) {
+    return i.name
+  })
 }
 
-function exactMatch() {
-
+function exactMatch(drivers, object) {
+  if (object.hasOwnProperty('revenue')) {
+    return drivers.filter(function(i) {
+      if (i.revenue === object.revenue) {
+        return i;
+      }
+    })
+  } else {
+    return drivers.filter(function(i) {
+      if (i.name === object.name) {
+        return i;
+      }
+    })
+  }
 }
 
-function exactMatchToList() {
-
+function exactMatchToList(drivers, object) {
+  newArr = exactMatch(drivers, object);
+  return newArr.map(function(i) {
+    return i.name
+  })
 }
