@@ -9,6 +9,22 @@ function driverNamesWithRevenueOver(drivers, revenue) {
     })
 }
 
-function exactMatch(drivers, revenue) {
-   
+function exactMatch(drivers, attr) {
+   const driverArray = [];
+   drivers.map(function (driver) { 
+       for(const key in attr){
+           debugger
+            if(driver[key] === attr[key]){
+                driverArray.push(driver);
+            }
+        } 
+    })
+    return driverArray; 
+}
+
+function exactMatchToList(drivers, attr) {
+    let toList = exactMatch(drivers, attr) 
+    return toList.map(function (driver){
+        return driver.name;
+    })
 }
