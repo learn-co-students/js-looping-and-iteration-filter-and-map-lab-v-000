@@ -27,7 +27,7 @@ function exactMatch(array, obj) {
   return array.filter(driver => driver.revenue === obj.revenue || driver.name === obj.name)
  }
 
- // returns an array of strings with each element in the array corresponding to the matching driver's name. For example, exactMatchToList(drivers, { revenue: 2000 }) will return ['Sammy'], as Sammy is the name of the matching driver object.
+ // returns an array of strings with each element in the array corresponding to the matching driver's name
 function exactMatchToList(array, obj) {
   return exactMatch(array, obj).map(driver => `${driver.name}`)
 }
