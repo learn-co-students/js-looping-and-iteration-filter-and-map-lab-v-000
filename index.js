@@ -14,3 +14,16 @@ function exactMatch(drivers, attrObj) {
 function exactMatchToList(drivers, attrObj) {
   return exactMatch(drivers, attrObj).map(driverObj => driverObj.name);
 }
+
+
+// function exactMatch (drivers, matcher) {
+//   return drivers.filter(function (driver) {
+//     let matches = false;
+//
+//     for (const key in matcher) {
+//       matches = driver[key] === matcher[key];
+//     }
+//
+//     return matches;
+//   });
+// }
