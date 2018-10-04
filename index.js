@@ -23,6 +23,26 @@ function exactMatch(driversObjsArr, objWithOneAttr){
       return driverObj[key] === value;
     });
 }
+
+
+//alternatively, using for ... in - to iterate over properties in an object
+// to access a property's value combine the passed in key with bracket operator
+// function exactMatch (driversObjsArr, objWithOneAttr) {
+//   return driversObjsArr.filter(function (driverObj) {
+//     let matches = false;
+
+
+//     for (const key in objWithOneAttr) {
+//       matches = driverObj[key] === objWithOneAttr[key];
+//     }
+
+//     return matches;
+//   });
+// }
+
+
+
+
 //returns an array of strings representing the name of each driver who matches the passed in object
 function exactMatchToList(driversObjsArr, objWithOneAttr){
   return exactMatch(driversObjsArr, objWithOneAttr).map(function(driverObj){return driverObj.name})
