@@ -1,13 +1,5 @@
-// Code your solution here:
-
-const newDrivers = [{ name: 'Sally',   revenue: 400 },
-{ name: 'Annette', revenue: 200 },
-{ name: 'Jim',     revenue: 150 },
-{ name: 'Sally',   revenue: 200 }];
-
 function driversWithRevenueOver (drivers, revenue) {
     return drivers.filter(function (driver) {
-        // Don't forget this return
         if (driver.revenue > revenue) {
             return driver;
         }  
@@ -15,11 +7,23 @@ function driversWithRevenueOver (drivers, revenue) {
 }
 
 function driverNamesWithRevenueOver (drivers, revenue) {
-    return driversWithRevenueOver (drivers, revenue).map(drivers, driver {
+    return driversWithRevenueOver(drivers, revenue)
+        .map(function (driver) {
             return driver.name;
     });
 }
 
+function exactMatch (drivers, matcher) {
+    return drivers.filter (function (driver) {
+        if (matcher.revenue === driver.revenue || matcher.name === driver.name) {
+        return driver;
+        }
+    });
+}
 
-// don't forget that map takes in the array as first parameter, unlike filter
-
+function exactMatchToList (drivers, matcher) {
+    return exactMatch (drivers, matcher)
+        .map(function (driver) {
+            return driver.name
+        });
+}
