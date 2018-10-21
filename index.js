@@ -25,6 +25,17 @@ function exactMatch(drivers, object) {
   //console.log(list)
 }
 
+//or can do
+//function exactMatch (drivers, matcher) {
+  //return drivers.filter(function (driver) {
+  //  let matches = false;
+
+    //for (const key in matcher) {
+    //  matches = driver[key] === matcher[key];
+  //  }
+    //return matches;
+  //});
+//}
 
 function exactMatchToList(drivers, object) {
   //return function from above, map it & return driver.name
