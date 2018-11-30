@@ -17,3 +17,4 @@ You'll be writing four functions:
 - [MDN: Map](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map)
 
 <p class='util--hide'>View <a href='https://learn.co/lessons/js-looping-and-iteration-filter-and-map-lab'>Filter and Map Lab</a> on Learn.co and start learning to code for free.</p>
+
