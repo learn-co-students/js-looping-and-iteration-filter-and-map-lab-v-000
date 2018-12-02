@@ -8,9 +8,15 @@ function driverNamesWithRevenueOver(drivers, value) {
 }
 
 function comparedriver(driver, value) {
-  const newdriver = Object.assign({}, driver, value)
-  return newdriver.name == driver.name && newdriver.revenue == driver.revenue
+  for (var key in value) {
+    return driver[key] === value[key]
+  }
 }
+
+// function comparedriver(driver, value) {
+//   const newdriver = Object.assign({}, driver, value)
+//   return newdriver.name == driver.name && newdriver.revenue == driver.revenue
+// }
 
 function exactMatch(drivers, value) {
   return drivers.filter(driver => comparedriver(driver, value))
