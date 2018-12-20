@@ -14,6 +14,6 @@ function exactMatch(drivers, attr) {
 
 function exactMatchToList(drivers, attr) {
   const k = Object.keys(attr)
-  let array = drivers.filter(d => d[k] === attr[k] )
-  return array.map(d => d.name)
+  return drivers.filter(d => d[k] === attr[k] ).map(d => d.name)
+
 }
