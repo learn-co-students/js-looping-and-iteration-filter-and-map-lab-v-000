@@ -12,5 +12,18 @@ function driverNamesWithRevenueOver(drivers, revenue){
 };
 
 function exactMatch(drivers, param){
-    debugger;
-}
+    let newDrivers = []
+    
+    for (const element of drivers) {
+        if (element.name === param.name){
+            newDrivers.push(element)
+        } else if (element.revenue === param.revenue){
+            newDrivers.push(element)
+        } 
+    } 
+    return newDrivers
+};
+
+function exactMatchToList(drivers, param){
+    return exactMatch(drivers, param).map(driver => driver.name)
+};
