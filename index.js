@@ -9,17 +9,13 @@ function driverNamesWithRevenueOver(drivers, revenue) {
     return result.map(driver => driver.name);
 }
 
+
 function exactMatch(drivers, query) {
-    return drivers.filter(criteria => criteria.key === query.key || criteria.key = query.key);
+    let key = Object.keys(query)[0]
+       return drivers.filter(driver => driver[key] === query[key]);
 }
 
-//function exactMatch(drivers, query) {
-    //return drivers(function(criteria) {
-        //criteria.key === query.key || criteria.key = query.key
-    //}
-//}
-        //return criteria 
-  
-    //return drivers.filter(driver =>driver.name===name) || (driver => driver.revenue=revenue);
-    //const result = drivers.filter(driver=>driver.name===name) || (driver=>driver.revenue=revenue);
-    //return result;
+function exactMatchToList(drivers, query) {
+    const result = exactMatch(drivers, query)
+    return result.map(driver => driver.name);
+}
