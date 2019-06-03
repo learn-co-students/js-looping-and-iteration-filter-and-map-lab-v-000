@@ -22,11 +22,7 @@ function exactMatch(drivers, objToMatch){
 }
 
 function exactMatchToList(drivers, objToMatch){
-    return drivers.map(function (driver) {
-        let match = false;
-        for (const key in objToMatch) {
-         match = driver[key] === objToMatch[key];
-        }
-       return match.toString();
-      });
+    return exactMatch(drivers, objToMatch).map(function (driver) {   
+      return driver.name;
+    });
 }
