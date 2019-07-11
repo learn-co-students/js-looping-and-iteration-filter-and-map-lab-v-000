@@ -6,8 +6,9 @@ function driversWithRevenueOver(drivers, revenue) {
 }
 
 function driverNamesWithRevenueOver(drivers, revenue) {
-const driversRevenue = driversWithRevenueOver(drivers, revenue);
-  return driversRevenue.map(function(driver) {
-    return driver.name
-  }
+ //return driversWithRevenueOver(drivers, revenue)
+ const driversRevenue = driversWithRevenueOver(drivers, revenue);
+      return  driversRevenue.map(function(driver) {
+     return driver.name
+   })
 }
