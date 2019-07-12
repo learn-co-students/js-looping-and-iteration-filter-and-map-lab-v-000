@@ -15,12 +15,16 @@ function driverNamesWithRevenueOver(drivers, revenue) {
 
 function exactMatch(drivers, attribute) {
 
-  return drivers.filter(driver => driver.name === attribute );
+  return drivers.filter(function (driver) {
+    if (driver.name === attribute.name || driver.revenue === attribute.revenue) {
+      return driver.name;
+  };
+});
 }
 
-// var newArray = homes.filter(function (el) {
-//   return el.price <= 1000 &&
-//          el.sqft >= 500 &&
-//          el.num_of_beds >=2 &&
-//          el.num_of_baths >= 2.5;
-// });
+function exactMatchToList(drivers, attribute) {
+const exactMatchAction = exactMatch(drivers, attribute);
+  return  exactMatchAction.map(function(driver) {
+  return driver.name
+  })
+}
