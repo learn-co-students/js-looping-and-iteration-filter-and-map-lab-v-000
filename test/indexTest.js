@@ -57,7 +57,7 @@ describe('index.js', function () {
         { name: 'Sally', revenue: 200 }
       ]);
 
-      expect(exactMatch(extendedDrivers, { revenue: 200 })).to.eql([
+      expect(exactMatch(extendedDrivers, { revenue: 200})).to.eql([
         { name: 'Annette', revenue: 200 },
         { name: 'Sally',   revenue: 200 }
       ]);
