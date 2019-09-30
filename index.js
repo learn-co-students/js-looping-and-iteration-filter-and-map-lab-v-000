@@ -1,32 +1,26 @@
 // Code your solution here:
-function driversWithRevenueOver (drivers, revenue) {
-  return drivers.filter(function (driver) {
-    return driver.revenue > revenue;
-  });
+function driversWithRevenueOver(drivers, revenue){
+  return drivers.filter(function (driver){
+    return driver.revenue > revenue
+  })
 }
 
-function driverNamesWithRevenueOver (drivers, revenue) {
-  return driversWithRevenueOver(drivers, revenue)
-    .map(function (driver) {
-      return driver.name;
-    });
+function driverNamesWithRevenueOver(drivers, revenue){
+  return driversWithRevenueOver(drivers, revenue).map(function(driver){
+    return driver.name
+  })
 }
 
-function exactMatch (drivers, matcher) {
-  return drivers.filter(function (driver) {
-    let matches = false;
-
-    for (const key in matcher) {
-      matches = driver[key] === matcher[key];
+function exactMatch(drivers, attribute){
+  return drivers.filter(function(driver){
+    for (const key in attribute){
+      return driver[key] === attribute[key]
     }
-
-    return matches;
-  });
+  })
 }
 
-function exactMatchToList (drivers, matcher) {
-  return exactMatch(drivers, matcher)
-    .map(function (driver) {
-      return driver.name;
-    });
+function exactMatchToList(drivers, attribute){
+  return exactMatch(drivers, attribute).map(function(driver){
+    return driver.name;
+  })
 }
