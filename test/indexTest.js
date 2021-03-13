@@ -50,8 +50,8 @@ describe('index.js', function () {
     });
   });
 
-  describe('exactMatch()', function () {
-    it('returns an array of all matching drivers', function () {
+ describe('exactMatch()', function () {
+    it( 'returns an array of all matching drivers', function () {
       expect(exactMatch(extendedDrivers, { name: 'Sally' })).to.eql([
         { name: 'Sally', revenue: 400 },
         { name: 'Sally', revenue: 200 }
